@@ -27,7 +27,7 @@ TGaxis.SetMaxDigits(3)
 
 file = TFile.Open(options.input  , 'r')
 if options.compfile:
-  file_comp = TFile.Open(options.input  , 'r')
+  file_comp = TFile.Open(options.compfile  , 'r')
 
 c = TCanvas('', '', 600,400)
 c.cd()
@@ -105,9 +105,9 @@ for var in variables:
   stats.SetX2NDC(0.89)
   stats.SetName('stat1')
 
+  stackPad.SetLogy(var[7])
   # same for file2, if present
   if options.compfile:
-    file_comp = TFile.Open(options.input  , 'r')
 
     h_comp = file_comp.Get(var[0] + '_base')
     h_comp.SetLineColor(2)
@@ -139,7 +139,6 @@ for var in variables:
     if options.diff:
       c.SetCanvasSize(600,900)
       stackPad.SetBottomMargin(0.2)
-      stackPad.SetLogy(var[7])
       ratioPad.cd()
       ratioPad.SetGridy(True)
       ratioPad.SetBottomMargin(0.2)
