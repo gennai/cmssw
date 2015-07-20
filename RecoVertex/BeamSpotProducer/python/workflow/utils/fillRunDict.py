@@ -3,6 +3,8 @@ Dictionary to connect the number of (stable) LHC Fill to
 the CMS run numbers.
 For now this is periodically done by hand.
 Could be made smarter at some point.
+
+A handy re-labeling function is also provided.
 '''
 
 fillRunDict = {
@@ -38,5 +40,28 @@ fillRunDict = {
   3820: [246951, 246953, 246954, 246956, 246957, 246958, 246959, 246960, 246961, 246962, 246963],
   3819: [246908, 246912, 246913, 246914, 246919, 246920, 246923, 246926, 246930, 246933, 246934, 246936],
 }
+
+def labelByFill(histo):
+  '''
+  Takes a TH1.
+  Relabels the x-axis so that the Fill number appears.
+  '''
+  for ibin in range(histo.GetNbinsX()):
+  irun = histo.GetXaxis().GetBinLabel(ibin+1)
+  if irun == '':  
+    continue
+  for k, v in fillRunDict.items():
+    if int(irun) in v: 
+    theifill = k
+    break
+  histo.GetXaxis().SetBinLabel(ibin+1, str(theifill))
+  
+  previousLabel = histo.GetXaxis().GetBinLabel(1)  
+  for ibin in range(1, histo.GetNbinsX()):
+  if histo.GetXaxis().GetBinLabel(ibin+1) == '':  continue
+  if histo.GetXaxis().GetBinLabel(ibin+1) == previousLabel:
+    histo.GetXaxis().SetBinLabel(ibin+1, '')
+  else:
+    previousLabel = histo.GetXaxis().GetBinLabel(ibin+1)
 
 
