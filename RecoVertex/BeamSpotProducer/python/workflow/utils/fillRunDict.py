@@ -47,21 +47,21 @@ def labelByFill(histo):
   Relabels the x-axis so that the Fill number appears.
   '''
   for ibin in range(histo.GetNbinsX()):
-  irun = histo.GetXaxis().GetBinLabel(ibin+1)
-  if irun == '':  
-    continue
-  for k, v in fillRunDict.items():
-    if int(irun) in v: 
-    theifill = k
-    break
-  histo.GetXaxis().SetBinLabel(ibin+1, str(theifill))
+	irun = histo.GetXaxis().GetBinLabel(ibin+1)
+	if irun == '':  
+	  continue
+	for k, v in fillRunDict.items():
+	  if int(irun) in v: 
+		theifill = k
+		break
+	histo.GetXaxis().SetBinLabel(ibin+1, str(theifill))
   
   previousLabel = histo.GetXaxis().GetBinLabel(1)  
   for ibin in range(1, histo.GetNbinsX()):
-  if histo.GetXaxis().GetBinLabel(ibin+1) == '':  continue
-  if histo.GetXaxis().GetBinLabel(ibin+1) == previousLabel:
-    histo.GetXaxis().SetBinLabel(ibin+1, '')
-  else:
-    previousLabel = histo.GetXaxis().GetBinLabel(ibin+1)
+	if histo.GetXaxis().GetBinLabel(ibin+1) == '':  continue
+	if histo.GetXaxis().GetBinLabel(ibin+1) == previousLabel:
+	  histo.GetXaxis().SetBinLabel(ibin+1, '')
+	else:
+	  previousLabel = histo.GetXaxis().GetBinLabel(ibin+1)
 
 
