@@ -4,7 +4,7 @@ process = cms.Process("BSworkflow")
 
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
-      "/store/express/Run2015A/StreamExpress/ALCARECO/TkAlMinBias-Express-v1/000/246/959/00000/14174DF2-490A-E511-9862-02163E0143E9.root",
+      "/store/data/Run2015A/ZeroBias/RECO/PromptReco-v1/000/248/038/00000/5C3E92F8-6614-E511-BF18-02163E0143EC.root",
     )
 )
 
@@ -26,7 +26,7 @@ process.load("RecoVertex.BeamSpotProducer.BeamSpot_cfi")
 process.load("Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cff")
 process.load('Configuration.Geometry.GeometryRecoDB_cff')
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff")
-process.GlobalTag.globaltag = 'GR_E_V48'
+process.GlobalTag.globaltag = '74X_dataRun2_Candidate_2015_10_06_09_25_21'
 
 ## Track refit
 process.load("RecoTracker.TrackProducer.TrackRefitters_cff")
@@ -66,9 +66,9 @@ process.d0_phi_analyzer.BeamFitter.MinimumTotalLayers        = 6
 process.d0_phi_analyzer.BeamFitter.OutputFileName            = 'BeamFit_LumiBased_Workflow_alcareco.root' 
 process.d0_phi_analyzer.BeamFitter.TrackAlgorithm            = cms.untracked.vstring()
 process.d0_phi_analyzer.BeamFitter.TrackCollection           = 'TrackRefitter'
-process.d0_phi_analyzer.BeamFitter.SaveFitResults            = True
+process.d0_phi_analyzer.BeamFitter.SaveFitResults            = False
 process.d0_phi_analyzer.BeamFitter.SaveNtuple                = False
-process.d0_phi_analyzer.BeamFitter.SavePVVertices            = True
+process.d0_phi_analyzer.BeamFitter.SavePVVertices            = False
    
 process.d0_phi_analyzer.PVFitter.Apply3DFit                  = True
 process.d0_phi_analyzer.PVFitter.minNrVerticesForFit         = 10 
@@ -79,7 +79,8 @@ process.d0_phi_analyzer.BSAnalyzerParameters.fitEveryNLumi   = 1
 process.d0_phi_analyzer.BSAnalyzerParameters.resetEveryNLumi = 1
 
 
-process.p = cms.Path(process.offlineBeamSpot                        + 
+process.p = cms.Path(
+                     process.offlineBeamSpot                        + 
                      process.TrackRefitter                          + 
                      process.offlinePrimaryVerticesFromRefittedTrks +
                      process.d0_phi_analyzer)
