@@ -14,7 +14,7 @@ OnlineBeamSpotESProducer::OnlineBeamSpotESProducer(const edm::ParameterSet& p){
 label_HLT_        = p.getParameter<std::string>("Label_HLT");
 label_HTEnriched_ = p.getParameter<std::string>("Label_HTEnriched");
 label_Legacy_     = p.getParameter<std::string>("Label_Legacy");
-setWhatProduced(this, label_HLT_);
+setWhatProduced(this, edm::es::Label(label_HLT_));
 }
 
 OnlineBeamSpotESProducer::~OnlineBeamSpotESProducer() {}
