@@ -35,7 +35,7 @@ std::unique_ptr<BeamSpotObjects> OnlineBeamSpotESProducer::produce(const BeamSpo
 
   //    BtagWorkingPoint wp;
     //how to write it out with a label?
-  return std::make_unique<BeamSpotObjects>(*spotDB_,label_HLT_);
+  return std::make_unique<BeamSpotObjects>(*spotDB_);
 }
 
 DEFINE_FWK_EVENTSETUP_MODULE(OnlineBeamSpotESProducer);
