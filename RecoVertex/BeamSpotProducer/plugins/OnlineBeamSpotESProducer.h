@@ -17,7 +17,9 @@ public:
 
 private:
   edm::ParameterSet pset_;
-  std::string label_;
+  std::string label_HLT_;
+  std::string label_HTEnriched_;
+  std::string label2_Legacy_;
 
 };
 
