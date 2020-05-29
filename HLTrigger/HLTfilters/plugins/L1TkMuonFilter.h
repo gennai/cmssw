@@ -38,6 +38,8 @@ private:
 
   double min_Pt_;  // min pt cut
   int    min_N_;   // min number of candidates above pT cut
+  double min_Eta_; //min eta cut
+  double max_Eta_; //max eta cut
 };
 
 #endif  //L1TkMuonFilter_h
