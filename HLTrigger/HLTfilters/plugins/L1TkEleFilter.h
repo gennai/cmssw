@@ -31,10 +31,12 @@ public:
                  trigger::TriggerFilterObjectWithRefs& filterproduct) const override;
 
 private:
-  edm::InputTag l1TkEleTag_; //input tag for L1 Tk Ele product
+  edm::InputTag l1TkEleTag1_; //input tag for L1 Tk Ele product
+  edm::InputTag l1TkEleTag2_; //input tag for L1 Tk Ele product
 
   typedef std::vector<l1t::TkElectron> TkEleCollection;
-  edm::EDGetTokenT<TkEleCollection> tkEleToken_;  // token identifying product containing L1 TkEles
+  edm::EDGetTokenT<TkEleCollection> tkEleToken1_;  // token identifying product containing L1 TkEles
+  edm::EDGetTokenT<TkEleCollection> tkEleToken2_;  // token identifying product containing L1 TkEles
 
   double min_Pt_;  // min pt cut
   int    min_N_;   // min number of candidates above pT cut
